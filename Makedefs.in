@@ -1,0 +1,76 @@
+#
+# Common makefile definitions for the CUPS commands.
+#
+# Copyright © 2022 by OpenPrinting.
+#
+# Licensed under Apache License v2.0.  See the file "LICENSE" for more
+# information.
+#
+
+# Version of the CUPS commands
+CUPS_VERSION =	@CUPS_VERSION@
+
+
+# Programs...
+CC		=	@CC@
+INSTALL		=	@INSTALL@
+LN		=	@LN@ -sf
+MKDIR           =       @MKDIR@ -p
+RM		=	@RM@ -f
+RMDIR		=	@RMDIR@
+SED		=	@SED@
+SHELL		=	/bin/sh
+
+
+# Installation programs...
+INSTALL_BIN	=	$(LIBTOOL) $(INSTALL) -c -m 755
+INSTALL_DATA	=	$(INSTALL) -c -m 444
+INSTALL_DIR	=	$(INSTALL) -d -m 755
+INSTALL_LIB	=	$(LIBTOOL) $(INSTALL) -c -m 755
+INSTALL_MAN	=	$(INSTALL) -c -m 444
+
+
+# Programs and options...
+CC		=	@CC@
+CFLAGS		=	@CFLAGS@ $(CPPFLAGS) $(OPTIM) $(WARNINGS)
+CODE_SIGN	=	@CODE_SIGN@
+CODESIGN_IDENTITY =	-
+CPPFLAGS	=	-I.. -I../libcups -I../pdfio @CPPFLAGS@
+CSFLAGS		=	-s "$(CODESIGN_IDENTITY)" @CSFLAGS@ --timestamp
+INSTALL		=	@INSTALL@
+LDFLAGS		=	@LDFLAGS@ $(OPTIM)
+LIBS		=	@LIBS@
+OPTIM		=	@OPTIM@
+WARNINGS	=	@WARNINGS@
+
+
+# Directories...
+bindir		=	@bindir@
+datadir		=	@datadir@
+datarootdir	=	@datarootdir@
+exec_prefix	=	@exec_prefix@
+includedir	=	@includedir@
+infodir		=	@infodir@
+libdir		=	@libdir@
+libexecdir	=	@libexecdir@
+localstatedir	=	@localstatedir@
+mandir		=	@mandir@
+oldincludedir	=	@oldincludedir@
+prefix		=	@prefix@
+privateinclude	=	@privateinclude@
+sbindir		=	@sbindir@
+sharedstatedir	=	@sharedstatedir@
+srcdir		=	@srcdir@
+sysconfdir	=	@sysconfdir@
+top_srcdir	=	@top_srcdir@
+
+BUILDROOT	=	$(DSTROOT)$(RPM_BUILD_ROOT)$(DESTDIR)
+
+
+# Build commands...
+.SILENT:
+.SUFFIXES:	.c .h .o
+
+.c.o:
+	echo Compiling $<...
+	$(CC) $(CFLAGS) -c -o $@ $<

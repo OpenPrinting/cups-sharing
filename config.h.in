@@ -1,0 +1,18 @@
+//
+// Configuration file for the CUPS commands.
+//
+// Copyright © 2022 by OpenPrinting.
+//
+// Licensed under Apache License v2.0.  See the file "LICENSE" for more
+// information.
+//
+
+#ifndef CUPS_COMMANDS_CONFIG_H
+#define CUPS_COMMANDS_CONFIG_H
+
+
+// Version number
+#define CUPS_VERSION ""
+
+
+#endif // !CUPS_COMMANDS_CONFIG_H
