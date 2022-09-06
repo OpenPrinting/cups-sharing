@@ -26,7 +26,7 @@ these sources:
 - `CHANGES.md`: A list of changes for each release of cups-sharing.
 - `CONTRIBUTING.md`: Guidelines for contributing to the CUPS project.
 - `DEVELOPING.md`: Guidelines for developing code for the CUPS project.
-- `INSTALL.md`: Instructions for building and installing the CUPS library.
+- `INSTALL.md`: Instructions for building and installing the software.
 - `LICENSE`: The CUPS license agreement (Apache 2.0).
 - `NOTICE`: Copyright notices and exceptions to the CUPS license agreement.
 - `README.md`: This file.
