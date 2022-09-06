@@ -8,7 +8,7 @@ CUPS Sharing Server v3 (cups-sharing)
 [![LGTM Grade](https://img.shields.io/lgtm/grade/cpp/github/OpenPrinting/cups-sharing)](https://lgtm.com/projects/g/OpenPrinting/cups-sharing/?mode=list)
 
 > *Note:* This project is intended to be paired with the "libcups",
-> "cups-local", and "cups-sharing" projects.  Right now all of this code should
+> "cups-commands", and "cups-local" projects.  Right now all of this code should
 > be considered alpha-quality for testing purposes only!
 
 The CUPS Sharing Server provides a server for shared printing with accounting,
