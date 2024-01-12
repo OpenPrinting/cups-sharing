@@ -5,11 +5,10 @@ CUPS Sharing Server v3 (cups-sharing)
 ![Apache 2.0](https://img.shields.io/github/license/OpenPrinting/cups-sharing)
 [![Build and Test](https://github.com/OpenPrinting/cups-sharing/workflows/Build%20and%20Test/badge.svg)](https://github.com/OpenPrinting/cups-sharing/actions/workflows/build.yml)
 [![Coverity Scan](https://img.shields.io/coverity/scan/NNNNN)](https://scan.coverity.com/projects/OpenPrinting-cups-sharing)
-[![LGTM Grade](https://img.shields.io/lgtm/grade/cpp/github/OpenPrinting/cups-sharing)](https://lgtm.com/projects/g/OpenPrinting/cups-sharing/?mode=list)
 
-> *Note:* This project is intended to be paired with the "libcups",
-> "cups-commands", and "cups-local" projects.  Right now all of this code should
-> be considered alpha-quality for testing purposes only!
+> *Note:* This project is intended to be paired with the "libcups" and
+> "cups-local" projects.  Right now all of this code should be considered alpha-
+> quality for testing purposes only!
 
 The CUPS Sharing Server provides a server for shared printing with accounting,
 access control, policy support, and job release.  This project is part of
@@ -37,7 +36,7 @@ The `man` subdirectory contains the manual pages for each of the commands.
 Legal Stuff
 -----------
 
-Copyright © 2020-2022 by OpenPrinting.
+Copyright © 2020-2024 by OpenPrinting.
 
 Copyright © 2007-2020 by Apple Inc.
 

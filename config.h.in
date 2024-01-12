@@ -1,18 +1,26 @@
 //
-// Configuration file for the CUPS commands.
+// Configuration file for cups-sharing.
 //
-// Copyright © 2022 by OpenPrinting.
+// Copyright © 2022-2024 by OpenPrinting.
 //
 // Licensed under Apache License v2.0.  See the file "LICENSE" for more
 // information.
 //
 
-#ifndef CUPS_COMMANDS_CONFIG_H
-#define CUPS_COMMANDS_CONFIG_H
+#ifndef CUPS_SHARING_CONFIG_H
+#define CUPS_SHARING_CONFIG_H
 
 
 // Version number
-#define CUPS_VERSION ""
+#define CUPS_SHARING_VERSION ""
 
 
-#endif // !CUPS_COMMANDS_CONFIG_H
+// Data directory
+#define CUPS_SHARING_DATADIR ""
+
+
+// Localization strings macro
+#define _(x) x
+
+
+#endif // !CUPS_SHARING_CONFIG_H

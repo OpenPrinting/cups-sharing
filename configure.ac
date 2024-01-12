@@ -1,7 +1,7 @@
 dnl
-dnl Configuration script for the CUPS commands.
+dnl Configuration script for the CUPS sharing server.
 dnl
-dnl Copyright © 2022 by OpenPrinting.
+dnl Copyright © 2022-2024 by OpenPrinting.
 dnl
 dnl Licensed under Apache License v2.0.  See the file "LICENSE" for more
 dnl information.
@@ -19,14 +19,14 @@ AC_PREREQ([2.70])
 
 
 dnl Package name and version...
-AC_INIT([CUPS_COMMANDS], [3.0b1], [https://github.com/OpenPrinting/cups-commands/issues], [cups-commands], [https://openprinting.github.io/cups])
+AC_INIT([cups_sharing], [3.0b1], [https://github.com/OpenPrinting/cups-sharing/issues], [cups-sharing], [https://openprinting.github.io/cups])
 AC_CONFIG_HEADERS([config.h])
 
-CUPS_VERSION="AC_PACKAGE_VERSION"
+CUPS_SHARING_VERSION="AC_PACKAGE_VERSION"
 
-AC_SUBST([CUPS_VERSION])
+AC_SUBST([CUPS_SHARING_VERSION])
 
-AC_DEFINE_UNQUOTED([CUPS_VERSION], ["$CUPS_VERSION"], [Version number])
+AC_DEFINE_UNQUOTED([CUPS_SHARING_VERSION], ["$CUPS_SHARING_VERSION"], [Version number])
 
 
 dnl This line is provided to ensure that you don't run the autoheader program
@@ -86,6 +86,19 @@ AS_IF([$PKGCONFIG --exists cups3], [
 ], [
     AC_MSG_RESULT(no)
     AC_MSG_ERROR([Required CUPS library v3 is not present.])
+])
+
+
+dnl PAPPL library...
+AC_MSG_CHECKING([for PAPPL library v2.0 or later])
+AS_IF([$PKGCONFIG --exists pappl2 --atleast-version=2.0], [
+    AC_MSG_RESULT([yes])
+    CPPFLAGS="$CFLAGS $($PKGCONFIG --cflags pappl2)"
+    LIBS="$($PKGCONFIG --libs pappl2) $LIBS"
+], [
+    AC_MSG_RESULT([no])
+    $PKGCONFIG --debug --exists pappl2
+    AC_MSG_ERROR([PAPPL v2.0 or later is required.])
 ])
 
 
@@ -173,9 +186,9 @@ AS_IF([test -n "$GCC"], [
     ], [darwin*], [
         AS_IF([test "$host_os_version" -ge 200 -a x$enable_debug != xyes], [
             # macOS 11.0 and higher support the Apple Silicon (arm64) CPUs
-	    OPTIM="$OPTIM -mmacosx-version-min=10.14 -arch x86_64 -arch arm64"
+	    OPTIM="$OPTIM -mmacosx-version-min=11.0 -arch x86_64 -arch arm64"
 	], [test x$enable_debug != xyes], [
-	    OPTIM="$OPTIM -mmacosx-version-min=10.14 -arch x86_64"
+	    OPTIM="$OPTIM -mmacosx-version-min=11.0 -arch x86_64"
 	])
     ])
 ])
@@ -193,6 +206,30 @@ AS_IF([test "$prefix" = NONE], [
 ], [
     realprefix="$prefix"
 ])
+
+AS_IF([test "$datarootdir" = "\${prefix}/share"], [
+    AS_IF([test "$prefix" = "/"], [
+	datarootdir="/usr/share"
+    ], [
+	datarootdir="$realprefix/share"
+    ])
+])
+
+AS_IF([test "$datadir" = "\${prefix}/share"], [
+    AS_IF([test "$prefix" = "/"], [
+	datadir="/usr/share"
+    ], [
+	datadir="$realprefix/share"
+    ])
+], [test "$datadir" = "\${datarootdir}"], [
+    datadir="$datarootdir"
+])
+
+
+dnl Save the installed directory for localizations...
+CUPS_SHARING_DATADIR="$datadir/cups-sharing"
+AC_DEFINE_UNQUOTED([CUPS_SHARING_DATADIR], ["$datadir/cups-sharing"], [Location of data files.])
+AC_SUBST([CUPS_SHARING_DATADIR])
 
 
 dnl Generate a bunch of files...
